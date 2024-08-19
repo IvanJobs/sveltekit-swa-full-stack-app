@@ -5,9 +5,9 @@ import { env } from '$env/dynamic/private';
 import { fail } from '@sveltejs/kit';
 
 
-export async function load({ params }) {
+export async function load({ params, cookies }) {
     console.log('SvelteKit load function processed a request.');
-
+    cookies.set('cookie1', 'cookievalue1', {'path': '/'});
     return {
         items: [
             {'id': 1, 'title': "Item1", 'price': 10.00}
