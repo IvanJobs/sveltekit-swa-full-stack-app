@@ -6,19 +6,12 @@ import { fail } from '@sveltejs/kit';
 
 
 export async function load({ params }) {
-    const client = new CosmosClient({
-        endpoint: env.COSMOSDB_ENDPOINT,
-        key: env.COSMOSDB_KEY
-    });
-
     console.log('SvelteKit load function processed a request.');
-    
-    const database = client.database('SWAStore');
-    const container = database.container('Items');
-    
-    const { resources: items } = await container.items.readAll().fetchAll();
+
     return {
-        items: items
+        items: [
+            {'id': 1, 'title': "Item1", 'price': 10.00}
+        ]
     };
 }
 
